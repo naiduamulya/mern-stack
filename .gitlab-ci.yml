@@ -6,9 +6,7 @@ stages:
 
 variables:
   AWS_DEFAULT_REGION: "us-east-1"  # replace with your AWS region
-  EC2_INSTANCE_IP: "xx.xx.xx.xx"  # replace with your EC2 public IP
-  SSH_USER: "ec2-user"            # replace with your EC2 user (e.g., ubuntu or ec2-user)
-  PRIVATE_KEY: "your_private_key"  # replace with the name of your SSH key
+  
 
 setup:
   stage: setup
