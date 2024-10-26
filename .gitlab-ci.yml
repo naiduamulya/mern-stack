@@ -25,13 +25,14 @@ setup:
 
 build:
   stage: build
-  image: ubuntu
-  before_script:
-    - apt update -y
-    - apt install nodejs -y
-    - apt install npm -y
-    - npx update-browserslist-db@latest 
+  image: node:14
+  # before_script:
+  #   - apt update -y
+  #   - apt install nodejs -y
+  #   - apt install npm -y
+    
   script:
+
     - echo "Installing dependencies..."
     - ls
     - cd $CI_PROJECT_DIR
