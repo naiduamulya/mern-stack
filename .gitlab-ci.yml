@@ -29,17 +29,17 @@ build:
     paths:
       - build/
 
-deploy:
-  stage: deploy
-  image: node:14
-  script:
-    - echo "$PRIVATE_KEY" > deploy_key.pem
-    - chmod 600 deploy_key.pem
-    - echo "Deploying to EC2..."
-    - scp -i deploy_key.pem -r ./build $SSH_USER@$EC2_INSTANCE_IP:/var/www/html  # adjust path as needed
-    - ssh -i deploy_key.pem $SSH_USER@$EC2_INSTANCE_IP << EOF
-        cd /var/www/html
-        pm2 restart app || pm2 start app.js --name "mern-app"
-      EOF
-  only:
-    - main
+# deploy:
+#   stage: deploy
+#   image: node:14
+#   script:
+#     - echo "$PRIVATE_KEY" > deploy_key.pem
+#     - chmod 600 deploy_key.pem
+#     - echo "Deploying to EC2..."
+#     - scp -i deploy_key.pem -r ./build $SSH_USER@$EC2_INSTANCE_IP:/var/www/html  # adjust path as needed
+#     - ssh -i deploy_key.pem $SSH_USER@$EC2_INSTANCE_IP << EOF
+#         cd /var/www/html
+#         pm2 restart app || pm2 start app.js --name "mern-app"
+#       EOF
+#   only:
+#     - main
