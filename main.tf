@@ -2,6 +2,11 @@ provider "aws" {
   region = "us-east-1" # replace with your region
 }
 
+terraform {
+  backend "http" {
+  }
+}
+
 data "aws_ami" "latest" {     # aws_ami helps to get AMI ID of the os
     most_recent = true  # this is the filter for most recent Ami
    
