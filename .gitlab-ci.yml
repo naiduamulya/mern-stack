@@ -28,7 +28,9 @@ build:
   image: node:20
   script:
     - echo "Installing dependencies..."
+    - ls
     - cd $CI_PROJECT_DIR
+    - ls
     - npm install 
     - npm run build
   artifacts:
