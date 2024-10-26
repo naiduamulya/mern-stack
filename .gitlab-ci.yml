@@ -1,0 +1,45 @@
+# .gitlab-ci.yml
+stages:
+  - setup
+  - build
+  - deploy
+
+variables:
+  AWS_DEFAULT_REGION: "us-east-1"  # replace with your AWS region
+  EC2_INSTANCE_IP: "xx.xx.xx.xx"  # replace with your EC2 public IP
+  SSH_USER: "ec2-user"            # replace with your EC2 user (e.g., ubuntu or ec2-user)
+  PRIVATE_KEY: "your_private_key"  # replace with the name of your SSH key
+
+setup:
+  stage: setup
+  image: hashicorp/terraform:latest
+  script:
+    - echo "Setting up infrastructure using Terraform..."
+    - terraform init
+    - terraform apply -auto-approve
+
+build:
+  stage: build
+  image: node:14
+  script:
+    - echo "Installing dependencies..."
+    - npm install --legacy-peer-deps
+    - npm run build
+  artifacts:
+    paths:
+      - build/
+
+deploy:
+  stage: deploy
+  image: node:14
+  script:
+    - echo "$PRIVATE_KEY" > deploy_key.pem
+    - chmod 600 deploy_key.pem
+    - echo "Deploying to EC2..."
+    - scp -i deploy_key.pem -r ./build $SSH_USER@$EC2_INSTANCE_IP:/var/www/html  # adjust path as needed
+    - ssh -i deploy_key.pem $SSH_USER@$EC2_INSTANCE_IP << EOF
+        cd /var/www/html
+        pm2 restart app || pm2 start app.js --name "mern-app"
+      EOF
+  only:
+    - main
