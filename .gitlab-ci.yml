@@ -40,7 +40,7 @@ build:
     - npm install three --save
     - npm install @babel/plugin-proposal-private-property-in-object --save-dev
     - npm install 
-    - npm run build
+    - CI=false npm run build
   artifacts:
     paths:
       - build/
