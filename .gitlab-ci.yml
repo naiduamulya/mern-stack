@@ -30,6 +30,7 @@ build:
     - apt update -y
     - apt install nodejs -y
     - apt install npm -y
+    - npx update-browserslist-db@latest 
   script:
     - echo "Installing dependencies..."
     - ls
