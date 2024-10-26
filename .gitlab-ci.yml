@@ -2,7 +2,7 @@
 stages:
   - setup
   - build
-  - deploy
+  # - deploy
 
 variables:
   AWS_DEFAULT_REGION: "us-east-1"  # replace with your AWS region
@@ -12,8 +12,8 @@ setup:
   stage: setup
   image: hashicorp/terraform:1.9
   script:
-    - echo "Setting up infrastructure using Terraform..."
-    - terraform init
+    # - echo "Setting up infrastructure using Terraform..."
+    - terraform init --reconfigure
     - terraform apply -auto-approve
 
 build:
