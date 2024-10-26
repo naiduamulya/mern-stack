@@ -5,7 +5,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket         = "terraform-state-1324"
-    # key            = "path/to/terraform.tfstate"  # path within the S3 bucket to store the state file
+    key            = "state/"  # path within the S3 bucket to store the state file
     region         = "us-east-1"  # replace with your AWS region
     # encrypt        = true         # enable server-side encryption (recommended)
     # dynamodb_table = "your-lock-table"  # optional, for state locking
