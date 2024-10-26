@@ -25,7 +25,11 @@ setup:
 
 build:
   stage: build
-  image: node:20
+  image: ubuntu
+  before_script:
+    - apt update -y
+    - apt install nodejs -y
+    - apt install npm -y
   script:
     - echo "Installing dependencies..."
     - ls
