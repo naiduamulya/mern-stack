@@ -3,9 +3,9 @@ stages:
   - setup
   - build
   # - deploy
-
-tags: 
-  - mern-stack
+default: 
+  tags: 
+    - mern-stack
 
 variables:
   AWS_DEFAULT_REGION: "us-east-1"  # replace with your AWS region
