@@ -13,7 +13,11 @@ variables:
 
 setup:
   stage: setup
-  image: hashicorp/terraform:1.1.0
+  image: ubuntu:latest
+  before_script:
+    - apt-get update && apt-get install -y curl unzip
+    - curl -O https://releases.hashicorp.com/terraform/1.1.0/terraform_1.1.0_linux_amd64.zip
+    - unzip terraform_1.1.0_linux_amd64.zip -d /usr/local/bin/
   script:
     # - echo "Setting up infrastructure using Terraform..."
     - terraform init --reconfigure
