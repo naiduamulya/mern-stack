@@ -12,7 +12,7 @@ variables:
 
 setup:
   stage: setup
-  image: hashicorp/terraform:latest
+  image: hashicorp/terraform:1.9
   script:
     - echo "Setting up infrastructure using Terraform..."
     - terraform init
