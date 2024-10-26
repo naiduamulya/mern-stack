@@ -25,10 +25,10 @@ setup:
 
 build:
   stage: build
-  image: node:14
+  image: node:20
   script:
     - echo "Installing dependencies..."
-    - npm install --legacy-peer-deps
+    - npm install 
     - npm run build
   artifacts:
     paths:
